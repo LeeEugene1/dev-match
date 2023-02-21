@@ -1,7 +1,9 @@
+// import Pagination from "./Pagenation"
+
 window.addEventListener('load',()=>{
     drawTable()
 })
-const drawTable = (page=1) => {
+const drawTable = (currentPage=1) => {
     const perOption = document.querySelector('#per')
     // const getPer = 
     const perIdx = perOption.options.selectedIndex
@@ -12,8 +14,8 @@ const drawTable = (page=1) => {
     .then(data => {
         const tableContent = document.querySelector('#table tbody')
         tableContent.innerHTML = ``
-        const min = (page * per) - per//6,7,8,9,10
-        const max = page * per//10
+        const min = (currentPage * per) - per//6,7,8,9,10
+        const max = currentPage * per//10
         for(let i=min; i<max; i++){
             const {name, title, email, role} = data[i]
             const newTr = document.createElement('tr')
@@ -25,31 +27,14 @@ const drawTable = (page=1) => {
             `
             tableContent.appendChild(newTr)
         }
-        return {data,page}
+        return {data,currentPage,per}
     })
-    .then(({data,page}) => {
-        drawPagination(data, page)
-    })
-}
-
-const drawPagination = (data, page=1) => {
-    pageWrap = document.querySelector('#pagination')
-    pageWrap.innerHTML = ``
-    for(let i = 0; i<data.length / 5; i++){
-        const newBtn = document.createElement('button')
-        newBtn.setAttribute('data-page',i+1)
-        if(page === i+1){
-            newBtn.style.color = 'red'
-        }
-        newBtn.innerText = i + 1
-        pageWrap.appendChild(newBtn)
-    }
-
-    const btns = document.querySelectorAll('#pagination button')
-    btns.forEach(each => {
-        each.addEventListener('click',()=>{
-            const page = each.getAttribute('data-page')
-            drawTable(page,5)
-        })
+    .then(({data,currentPage,per}) => {
+        let maxPageCnt = data.length//25
+        // let per = 5//optionChecked 5
+        const newPage = new Pagination()
+        newPage.render(maxPageCnt,per,currentPage)
+        newPage.paginationBtnsStyle(currentPage)
+        //drawPagination(data, page)
     })
 }

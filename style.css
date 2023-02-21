@@ -49,6 +49,10 @@ th, td {
     cursor: pointer;
 }
 
+button.active{
+    color: red;
+}
+
 button.arrow {
     color:red;
 }
