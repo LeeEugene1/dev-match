@@ -1,5 +1,10 @@
 
 class Pagination{
+    constructor(maxPageCnt,pagePerCnt,currentPage){
+        this.maxPageCnt = maxPageCnt
+        this.pagePerCnt = pagePerCnt
+        this.currentPage = currentPage
+    }
     setPagenationBtns = (maxPageCnt,pagePerCnt,currentPage) => {
         let pageWrap = document.querySelector('#pagination')
         pageWrap.innerHTML = ``
@@ -35,9 +40,4 @@ class Pagination{
             }
         })
     }
-
-    render(maxPageCnt,pagePerCnt,currentPage){//25,5,1
-        this.setPagenationBtns(maxPageCnt,pagePerCnt,currentPage)
-    }
 }
-// export default Pagination

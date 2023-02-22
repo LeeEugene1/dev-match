@@ -1,8 +1,10 @@
-// import Pagination from "./Pagenation"
+import App from "./src/App.js"
 
-window.addEventListener('load',()=>{
-    drawTable()
-})
+// import Pagination from "./Pagenation"
+new App(document.querySelector('.App'))
+// window.addEventListener('load',()=>{
+    // drawTable()
+// })
 const drawTable = (currentPage=1) => {
     const perOption = document.querySelector('#per')
     // const getPer = 
@@ -33,7 +35,8 @@ const drawTable = (currentPage=1) => {
         let maxPageCnt = data.length//25
         // let per = 5//optionChecked 5
         const newPage = new Pagination()
-        newPage.render(maxPageCnt,per,currentPage)
+        newPage.setPagenationBtns(maxPageCnt,per,currentPage)
+        // newPage.render(maxPageCnt,per,currentPage)
         newPage.paginationBtnsStyle(currentPage)
         //drawPagination(data, page)
     })
