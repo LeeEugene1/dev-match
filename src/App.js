@@ -1,3 +1,4 @@
+import Pagination from "../Pagenation.js"
 import Table from "./Table.js"
 
 class App {
@@ -11,6 +12,7 @@ class App {
             if(res.ok){//status 200
                 let data = await res.json()
                 new Table(data)
+                new Pagination(data)
             }else{//404
                 alert('Something went wrong.')
             }
