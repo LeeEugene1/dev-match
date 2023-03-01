@@ -1,2 +1,17 @@
-git config --global user.email "uwm1004@gmail.com"
-  git config --global user.name "LeeEugene1"
+Header.js
+```javascript
+  home.addEventListener('click',()=>{
+      window.history.pushState('','','/web/')
+  })
+  const urlChange = new CustomEvent('urlchange',{
+    detail:{href:'/web/'}
+  })
+  document.dispatchEvent(urlChange)
+```
+
+App.js
+```javascript
+  window.addEventListener('urlchange',(e)=>{
+    console.log(e.detail.href)//'/web/'
+  })
+```
