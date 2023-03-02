@@ -13,20 +13,20 @@ class App{
         main.setAttribute('id', 'content_page')
         this.$body.appendChild(main)
 
-        new SignupPage(main)
-        new Homepage(main)
+        const homepage = new Homepage(main)
+        const signup = new SignupPage(main)
+
+        homepage.render()
+
         document.addEventListener('urlchange',(e)=>{
             let pathName = e.detail.href
             switch(pathName){
                 case '/web/':
-                    console.log('hp')
-                    Homepage.render()
+                    homepage.render()
                     break
                 case '/web/signup':
-                    console.log('si')
-                    SignupPage.render()
+                    signup.render()
                     break
-                default:
             }
         })
 
